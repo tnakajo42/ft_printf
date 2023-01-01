@@ -6,7 +6,7 @@
 #    By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/26 16:35:21 by tnakajo           #+#    #+#              #
-#    Updated: 2022/12/31 17:13:22 by tnakajo          ###   ########.fr        #
+#    Updated: 2023/01/01 21:32:31 by tnakajo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRCS = ft_printf.c \
 	ft_check_bonus.c \
 	ft_printf_bonus.c \
 	ft_found_ssp_bonus.c \
-	ft_found_mnd_bonus.c
+	ft_found_mnd_bonus.c \
+	ft_atoi_bonus.c \
+	ft_memcpy_bonus.c
 
 SRCS_BONUS = 
 

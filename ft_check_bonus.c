@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 18:43:03 by tnakajo           #+#    #+#             */
-/*   Updated: 2022/12/31 18:37:35 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/01 15:56:35 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ int	ft_check_bonus(const char *format, int j, char *flags)
 	int	l;
 
 	i = 0;
-	k = 0;
-	l = 0;
 	while (format[j])
 	{
 		k = ft_check_cspdiux(format[j], "cspdiuxX%");
 		if (k > 0)
 			return (i);
-		k = 0;
 		l = 0;
 		while (flags[k])
 		{

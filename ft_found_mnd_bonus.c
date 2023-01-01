@@ -6,12 +6,53 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 16:41:12 by tnakajo           #+#    #+#             */
-/*   Updated: 2022/12/31 18:31:30 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/01 23:24:27 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int	ft_found_mnd_bonus(const char format, va_list args, char *a, int i)
+{
+	int	n;
+
+	n = ft_atoi_bonus((char *)a);
+	if (format == 'c')
+	{
+		while (n > 1)
+		{
+			write (1, " ", 1);
+			n--;
+			i++;
+		}
+		i = ft_found_c(va_arg(args, int), i);
+	}
+	if (format == 'd' || format == 'i')
+		return (ft_found_i_plus_d(va_arg(args, int), i));
+	free(a);
+	return (i);
+}
+
+int	ft_not_found_mnd_bonus(const char format, va_list args, char *a, int i)
+{
+	int	n;
+
+	n = ft_atoi_bonus((char *)a);
+	if (format == 'c')
+	{
+		while (n > 1)
+		{
+			write (1, " ", 1);
+			n--;
+			i++;
+		}
+		i = ft_found_c(va_arg(args, int), i);
+	}
+	if (format == 'd' || format == 'i')
+		return (ft_found_i_plus_d(va_arg(args, int), i));
+	return (i);
+}
 
 int	ft_found_minus_bonus(const char format, va_list args, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:45:09 by tnakajo           #+#    #+#             */
-/*   Updated: 2022/12/31 17:47:48 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/01 20:40:24 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,6 @@
 #include <limits.h>
 
 static int	ft_next_percent(const char *format, va_list args, int i);
-
-// clear && gcc ft_printf.c ft_check_bonus.c ft_found_cspd.c ft_found_iux.c ft_found_plus_bonus.c ft_found_sharp_bonus.c ft_found_space_bonus.c ft_printf_bonus.c  && ./a.out
-
-/* int	ft_printf(const char *format, ...)
-{
-	va_list	args;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	va_start(args, format);
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			i = ft_next_percent(++format, args, i);
-		}
-		else if (i >= 0)
-		{
-			write (1, &*format, 1);
-			i++;
-		}
-		if (*format)
-			format++;
-	}
-	va_end(args);
-	return (i);
-} */
 
 int	ft_printf(const char *format, ...)
 {
