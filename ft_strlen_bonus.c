@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_strlen_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 17:16:16 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/02 16:01:34 by tnakajo          ###   ########.fr       */
+/*   Created: 2023/01/02 00:30:12 by tnakajo           #+#    #+#             */
+/*   Updated: 2023/01/02 00:31:09 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_atoi_bonus(const char *nptr)
+size_t	ft_strlen_bonus(const char *s)
 {
-	int	i;
-	int	sign;
-	int	number;
+	size_t	i;
 
 	i = 0;
-	sign = 1;
-	number = 0;
-	while (nptr[i] == 32 || (9 <= nptr[i] && nptr[i] <= 13))
+	while (s[i])
 		i++;
-	if (nptr[i] == 43 || nptr[i] == 45)
-	{
-		if (nptr[i] == 45)
-			sign = -1;
-		i++;
-	}
-	while (48 <= nptr[i] && nptr[i] <= 57)
-	{
-		number = number * 10 + (nptr[i] - 48);
-		i++;
-	}
-	return (number * sign);
+	return (i);
 }

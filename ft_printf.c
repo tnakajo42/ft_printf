@@ -6,13 +6,11 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:45:09 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/01 20:40:24 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/02 19:15:23 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
 
 static int	ft_next_percent(const char *format, va_list args, int i);
 

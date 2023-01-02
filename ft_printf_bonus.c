@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/01 23:23:01 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/02 21:42:40 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_printf_bonus(const char *f, va_list args, int j, int i)
 	j_ = j;
 	if (ft_isdigit_bonus(f, j, k))
 		return (ft_printd_bonus(f, args, j, i));
+	if (f[k - 1] == '.' && f[k] == 's')
+		return (i);
 	while (f[j])
 	{
 		if (f[j] == '#' && (f[k] == 'x' || f[k] == 'X'))
@@ -40,6 +42,7 @@ int	ft_printf_bonus(const char *f, va_list args, int j, int i)
 	{
 		if (f[j_] == ' ' && (f[k] == 'd' || f[k] == 'i' || f[k] == 's'))
 			return (ft_found_space_bonus(f[k], args, i));
+			// return (i);
 		j_++;
 	}
 	return (ft_others_bonus(&f[k], args, i));
@@ -63,17 +66,14 @@ static int	ft_isdigit_bonus(const char *f, int j, int bonus_len)
 
 static int	ft_printd_bonus(const char *f, va_list args, int j, int i)
 {
+	int		j_;
 	int		k;
 	int		n;
 	char	*a;
 
+	j_ = j;
 	k = ft_check_bonus(f, j, "-0123456789.# +") + j;
 	n = ft_checknum_bonus(f, j, "123456789", k) + j;
-	// printf("    j = %d\n", j);
-	// printf("    k = %d\n", k);
-	// printf("    n = %d\n", n);
-	// printf("k - n = %d\n", k - n);
-	
 	if (f[k - 1] == '.')
 	{
 		a = (char *)malloc((k - n) * sizeof(char));
@@ -84,14 +84,13 @@ static int	ft_printd_bonus(const char *f, va_list args, int j, int i)
 		a = (char *)malloc((k - n + 1) * sizeof(char));
 		ft_memcpy_bonus(a, f, n, k - n);
 	}
-	// printf("%s\n", a);
-	while (f[j] && j < k - n)
+	while (f[j] && j < n)
 	{
-		if (f[j] == '-' && f[j] == '0' && f[j] == '.')
-			return (ft_found_mnd_bonus(f[k], args, a, i));
+		if (f[j] == '-' || f[j] == '0' || f[j] == '.')
+			return (i + ft_found_mnd_bonus(f, args, a, j_));
 		j++;
 	}
-	return (ft_not_found_mnd_bonus(f[k], args, a, i));
+	return (i + ft_not_found_mnd_bonus(f, args, a, j_));
 }
 
 static int	ft_checknum_bonus(const char *f, int j, char *flags, int k)

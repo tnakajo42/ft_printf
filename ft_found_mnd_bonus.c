@@ -6,102 +6,115 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 16:41:12 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/01 23:24:27 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/02 22:30:43 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	ft_found_mnd_bonus(const char format, va_list args, char *a, int i)
+int	ft_found_mnd_bonus(const char *format, va_list args, char *a, int j)
 {
-	int	n;
+	int	i;
+	int	k;
 
-	n = ft_atoi_bonus((char *)a);
-	if (format == 'c')
+	i = 0;
+	k = ft_check_bonus(format, j, "-0123456789.# +") + j;
+	while (format[j] && j < k)
 	{
-		while (n > 1)
-		{
-			write (1, " ", 1);
-			n--;
-			i++;
-		}
-		i = ft_found_c(va_arg(args, int), i);
+		if (format[j] == ' ')
+			i = 1;
+		if (format[j] == '-')
+			return (ft_found_minus_bonus(format[k], args, a, i));
+		if (format[j] == '0')
+			return (ft_found_zero_bonus(format[k], args, a, i));
+		if (format[j] == '.')
+			return (ft_found_dot_bonus(format[k], args, a, i));
+		j++;
 	}
-	if (format == 'd' || format == 'i')
-		return (ft_found_i_plus_d(va_arg(args, int), i));
+	return (i);
+}
+
+int	ft_not_found_mnd_bonus(const char *format, va_list args, char *a, int j)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = ft_check_bonus(format, j, "-0123456789.# +") + j;
+	while (format[j] && j < k)
+	{
+		if (format[j] == ' ')
+			i = 1;
+		j++;
+	}
+	if (format[k] == 'c')
+		i = ft_found_c_bonus(va_arg(args, int), i, ' ', ft_atoi_bonus((char *)a));
+	if (format[k] == 's')
+		i = ft_found_s_bonus(va_arg(args, char *), i, ' ', ft_atoi_bonus((char *)a));
+	if (format[k] == 'p')
+		i = ft_found_p_bonus(va_arg(args, unsigned long long), i, ' ', ft_atoi_bonus((char *)a));
+	if (format[k] == 'd' || format[k] == 'i')
+		i = ft_found_i_plus_d_bonus(va_arg(args, int), i, ' ', ft_atoi_bonus((char *)a));
+	if (format[k] == 'u')
+		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, ' ', ft_atoi_bonus((char *)a));
+	if (format[k] == 'x')
+		i = ft_found_x_bonus(va_arg(args, size_t), i, ' ', ft_atoi_bonus((char *)a));
+	if (format[k] == 'X')
+		i = ft_found_bigx_bonus(va_arg(args, size_t), i, ' ', ft_atoi_bonus((char *)a));
 	free(a);
 	return (i);
 }
 
-int	ft_not_found_mnd_bonus(const char format, va_list args, char *a, int i)
+int	ft_found_minus_bonus(const char format, va_list args, char *a, int i)
 {
-	int	n;
-
-	n = ft_atoi_bonus((char *)a);
 	if (format == 'c')
-	{
-		while (n > 1)
-		{
-			write (1, " ", 1);
-			n--;
-			i++;
-		}
-		i = ft_found_c(va_arg(args, int), i);
-	}
+		i = ft_found_c_bonus(va_arg(args, int), i, '-', ft_atoi_bonus((char *)a));
+	if (format == 's')
+		i = ft_found_s_bonus(va_arg(args, char *), i, '-', ft_atoi_bonus((char *)a));
+	if (format == 'p')
+		i = ft_found_p_bonus(va_arg(args, unsigned long long), i, '-', ft_atoi_bonus((char *)a));
 	if (format == 'd' || format == 'i')
-		return (ft_found_i_plus_d(va_arg(args, int), i));
+		i = ft_found_i_plus_d_bonus(va_arg(args, int), i, '-', ft_atoi_bonus((char *)a));
+	if (format == 'u')
+		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, '-', ft_atoi_bonus((char *)a));
+	if (format == 'x')
+		i = ft_found_x_bonus(va_arg(args, size_t), i, '-', ft_atoi_bonus((char *)a));
+	if (format == 'X')
+		i = ft_found_bigx_bonus(va_arg(args, size_t), i, '-', ft_atoi_bonus((char *)a));
+	free(a);
 	return (i);
 }
 
-int	ft_found_minus_bonus(const char format, va_list args, int i)
-{
-	if (format == 'c')
-		return (ft_found_c(va_arg(args, int), i));
-	else if (format == 's')
-		return (ft_found_s(va_arg(args, char *), i));
-	else if (format == 'p')
-		return (ft_found_p(va_arg(args, unsigned long long), i));
-	else if (format == 'd' || format == 'i')
-		return (ft_found_i_plus_d(va_arg(args, int), i));
-	else if (format == 'u')
-		return (ft_found_u(va_arg(args, unsigned int), i));
-	else if (format == 'x')
-		return (ft_found_x(va_arg(args, size_t), i));
-	else if (format == 'X')
-		return (ft_found_bigx(va_arg(args, size_t), i));
-	else
-		return (i);
-}
-
-int	ft_found_zero_bonus(const char format, va_list args, int i)
+int	ft_found_zero_bonus(const char format, va_list args, char *a, int i)
 {
 	if (format == 's')
-		return (ft_found_s(va_arg(args, char *), i));
-	else if (format == 'd' || format == 'i')
-		return (ft_found_i_plus_d(va_arg(args, int), i));
-	else if (format == 'u')
-		return (ft_found_u(va_arg(args, unsigned int), i));
-	else if (format == 'x')
-		return (ft_found_x(va_arg(args, size_t), i));
-	else if (format == 'X')
-		return (ft_found_bigx(va_arg(args, size_t), i));
-	else
-		return (i);
+		i = ft_found_s_bonus(va_arg(args, char *), i, '0', ft_atoi_bonus((char *)a));
+	if (format == 'd' || format == 'i')
+		i = ft_found_i_plus_d_bonus(va_arg(args, int), i, '0', ft_atoi_bonus((char *)a));
+	if (format == 'u')
+		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, '0', ft_atoi_bonus((char *)a));
+	if (format == 'x')
+		i = ft_found_x_bonus(va_arg(args, size_t), i, '0', ft_atoi_bonus((char *)a));
+	if (format == 'X')
+		i = ft_found_bigx_bonus(va_arg(args, size_t), i, '0', ft_atoi_bonus((char *)a));
+	free(a);
+	return (i);
 }
 
-int	ft_found_dot_bonus(const char format, va_list args, int i)
+int	ft_found_dot_bonus(const char format, va_list args, char *a, int i)
 {
+	if (format == 's')
+		i = ft_found_s_bonus(va_arg(args, char *), i, '.', ft_atoi_bonus((char *)a));
 	if (format == 'd' || format == 'i')
-		return (ft_found_i_plus_d(va_arg(args, int), i));
-	else if (format == 'u')
-		return (ft_found_u(va_arg(args, unsigned int), i));
-	else if (format == 'x')
-		return (ft_found_x(va_arg(args, size_t), i));
-	else if (format == 'X')
-		return (ft_found_bigx(va_arg(args, size_t), i));
-	else
-		return (i);
+		i = ft_found_i_plus_d_bonus(va_arg(args, int), i, '.', ft_atoi_bonus((char *)a));
+	if (format == 'u')
+		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, '.', ft_atoi_bonus((char *)a));
+	if (format == 'x')
+		i = ft_found_x_bonus(va_arg(args, size_t), i, '.', ft_atoi_bonus((char *)a));
+	if (format == 'X')
+		i = ft_found_bigx_bonus(va_arg(args, size_t), i, '.', ft_atoi_bonus((char *)a));
+	free(a);
+	return (i);
 }
 
 /* int	main(void)
