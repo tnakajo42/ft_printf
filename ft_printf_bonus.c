@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/02 21:42:40 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/03 18:21:29 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_printf_bonus(const char *f, va_list args, int j, int i)
 	while (f[j])
 	{
 		if (f[j] == '#' && (f[k] == 'x' || f[k] == 'X'))
-			return (ft_found_sharp_bonus(f[k], args, i));
+			return (ft_found_sharp_bonus(f[k], args, "0", i));
 		if (f[j] == '+' && (f[k] == 'd' || f[k] == 'i'))
 			return (ft_found_plus_bonus(args, i));
 		j++;
@@ -42,7 +42,6 @@ int	ft_printf_bonus(const char *f, va_list args, int j, int i)
 	{
 		if (f[j_] == ' ' && (f[k] == 'd' || f[k] == 'i' || f[k] == 's'))
 			return (ft_found_space_bonus(f[k], args, i));
-			// return (i);
 		j_++;
 	}
 	return (ft_others_bonus(&f[k], args, i));
@@ -86,7 +85,7 @@ static int	ft_printd_bonus(const char *f, va_list args, int j, int i)
 	}
 	while (f[j] && j < n)
 	{
-		if (f[j] == '-' || f[j] == '0' || f[j] == '.')
+		if (f[j] == '-' || f[j] == '0' || f[j] == '.' || f[j] == '#')
 			return (i + ft_found_mnd_bonus(f, args, a, j_));
 		j++;
 	}

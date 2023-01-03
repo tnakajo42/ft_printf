@@ -6,30 +6,26 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:26:55 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/01 16:06:54 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/03 19:01:02 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	ft_found_sharp_bonus(const char format, va_list args, int i)
+int	ft_found_sharp_bonus(const char format, va_list args, char *a, int i)
 {
+	int				n;
 	unsigned int	x;
 
+	n = ft_atoi_bonus((char *)a);
 	x = (unsigned int)va_arg(args, size_t);
-	if (x != 0)
-	{
-		i = i + 2;
-		if (format == 'x')
-			write(1, "0x", 2);
-		else
-			write(1, "0X", 2);
-	}
 	if (format == 'x')
-		i = ft_found_x(x, i);
+		i = ft_found_x_bonus(x, i, '#', n);
 	else
-		i = ft_found_bigx(x, i);
+		i = ft_found_bigx_bonus(x, i, '#', n);
+	if (n != 0)
+		free(a);
 	return (i);
 }
 

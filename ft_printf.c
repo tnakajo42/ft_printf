@@ -6,13 +6,14 @@
 /*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:45:09 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/02 19:15:23 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/03 19:59:13 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static int	ft_next_percent(const char *format, va_list args, int i);
+static int	ft_next_percent_bonus(const char *f, va_list args, int j, int i);
 
 int	ft_printf(const char *format, ...)
 {
@@ -30,21 +31,27 @@ int	ft_printf(const char *format, ...)
 		if (format[j] == '%')
 		{
 			bonus_len = ft_check_bonus(format, ++j, "-0123456789.# +");
-			if (bonus_len > 0)
-				i = ft_printf_bonus(format, args, j, i);
-			else
-				i = ft_next_percent(&format[j], args, i);
+			i = ft_next_percent_bonus(format, args, j, i);
 		}
 		else if (i >= 0)
-		{
-			write (1, &format[j], 1);
-			i++;
-		}
+			i = ft_found_c(format[j], i);
 		if (i < 0)
 			return (i);
 		j = j + bonus_len + 1;
 	}
 	va_end(args);
+	return (i);
+}
+
+static int	ft_next_percent_bonus(const char *f, va_list args, int j, int i)
+{
+	int	bonus_len;
+
+	bonus_len = ft_check_bonus(f, j, "-0123456789.# +");
+	if (bonus_len > 0)
+		i = ft_printf_bonus(f, args, j, i);
+	else
+		i = ft_next_percent(&f[j], args, i);
 	return (i);
 }
 
