@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 18:21:29 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/04 20:14:55 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static int	ft_isdigit_bonus(const char *f, int j, int bonus_len);
 static int	ft_printd_bonus(const char *f, va_list args, int j, int i);
-static int	ft_checknum_bonus(const char *f, int j, char *flags, int k);
 static int	ft_others_bonus(const char *f, va_list args, int i);
 
 int	ft_printf_bonus(const char *f, va_list args, int j, int i)
@@ -65,34 +64,28 @@ static int	ft_isdigit_bonus(const char *f, int j, int bonus_len)
 
 static int	ft_printd_bonus(const char *f, va_list args, int j, int i)
 {
-	int		j_;
 	int		k;
 	int		n;
+	int		n_;
 	char	*a;
 
-	j_ = j;
 	k = ft_check_bonus(f, j, "-0123456789.# +") + j;
 	n = ft_checknum_bonus(f, j, "123456789", k) + j;
+	n_ = ft_checknum_bonus(f, j, "0123456789", k) + j;
+	while (n_++ < k - 1)
+		if (f[n_] == '.')
+			return (i + ft_found_md_bonus(f, args, j, n_));
 	if (f[k - 1] == '.')
-	{
-		a = (char *)malloc((k - n) * sizeof(char));
-		ft_memcpy_bonus(a, f, n, k - n);
-	}
+		a = ft_m_bonus((char *)malloc((k - n) * sizeof(char)), f, n, k - n - 1);
 	else
-	{
-		a = (char *)malloc((k - n + 1) * sizeof(char));
-		ft_memcpy_bonus(a, f, n, k - n);
-	}
-	while (f[j] && j < n)
-	{
-		if (f[j] == '-' || f[j] == '0' || f[j] == '.' || f[j] == '#')
-			return (i + ft_found_mnd_bonus(f, args, a, j_));
-		j++;
-	}
-	return (i + ft_not_found_mnd_bonus(f, args, a, j_));
+		a = ft_m_bonus((char *)malloc((k - n + 1) * sizeof(char)), f, n, k - n);
+	while (j <= n--)
+		if (f[n] == '-' || f[n] == '0' || f[n] == '.' || f[n] == '#')
+			return (i + ft_found_mnd_bonus(f, args, a, j));
+	return (i + ft_not_found_mnd_bonus(f, args, a, j));
 }
 
-static int	ft_checknum_bonus(const char *f, int j, char *flags, int k)
+int	ft_checknum_bonus(const char *f, int j, char *flags, int k)
 {
 	int	i;
 	int	l;

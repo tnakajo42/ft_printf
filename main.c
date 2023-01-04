@@ -6,13 +6,38 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 22:30:31 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 22:45:58 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/04 20:30:59 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 #include <limits.h>
+
+int	main(void)
+{
+	int	i;
+	// char *test;
+	i = 0;
+	// test = "test";
+
+	// printf("____%%7.3c%%7.0c*%%01.2c*%%0.2c____\n");
+	// i = ft_printf("*%1.3c*%7.0c*%01.2c*%1.0c*\n", 'z', 'Z', '&', '^');
+	// printf("%d\n", i);
+	// i = printf("*%1.3c*%7.0c*%01.2c*%0.0c*\n", 'z', 'Z', '&', '^');
+	// printf("%d\n", i);
+
+	printf("____%%7.3s%%7.7s____\n");
+	i = ft_printf("%7.3s%7.7s\n", "hello", "world");
+	printf("%d\n", i);
+	i = printf("%7.3s%7.7s\n", "hello", "world");
+	printf("%d\n", i);
+	
+	// i = printf("%7.3d%7.7d\n", 12345, 12345);
+	// printf("%d\n", i);
+	
+	return (0);
+}
 
 /* int	main(void)
 {

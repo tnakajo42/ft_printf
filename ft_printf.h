@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:53:02 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 22:13:37 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/04 19:54:21 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_found_dot_bonus(const char format, va_list args, char *a, int i);
 int		ft_atoi_bonus(const char *nptr);
 char	*ft_itoa_bonus(long n);
 size_t	ft_strlen_bonus(const char *s);
-void	*ft_memcpy_bonus(void *dest, const void *src, size_t n, size_t j);
+void	*ft_m_bonus(void *dest, const void *src, size_t n, size_t j);
 int		ft_found_c_bonus(int c, int i, char flag, int n);
 int		ft_found_s_bonus(char *s, int i, char flag, int n);
 int		ft_found_i_plus_d_bonus(int d, int i, char flag, int n);
@@ -50,5 +50,14 @@ int		ft_found_x_bonus(size_t x, int i, char flag, int n);
 int		ft_found_bigx_bonus(size_t bigx, int i, char flag, int n);
 int		ft_flagf_bonus(int len, int n, char flag, int i);
 int		ft_print_minusd_bonus(char *d_, int n, char flag, int i);
+int 	ft_checknum_bonus(const char *f, int j, char *flags, int k);
+int 	ft_found_md_bonus(const char *f, va_list args, int j, int m);
+int		ft_found_c_md_bonus(int c,int b, int a, char flag);
+int		ft_found_s_md_bonus(char *s,int b, int a, char flag);
+int		ft_found_p_md_bonus(size_t p,int b, int a, char flag);
+int		ft_found_i_plus_d_md_bonus(int d,int b, int a, char flag);
+int		ft_found_u_md_bonus(unsigned int u,int b, int a, char flag);
+int		ft_found_x_md_bonus(size_t x,int b, int a, char flag);
+int		ft_found_bigx_md_bonus(size_t bigx,int b, int a, char flag);
 
 #endif
