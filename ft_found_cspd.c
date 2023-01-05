@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_found_cspd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 21:58:27 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/05 15:40:37 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_found_s(char *s, int i)
 	return (i);
 }
 
-static int	ft_to_hex(size_t hex, int i)
+int	ft_to_hex(size_t hex, int i)
 {
 	if (hex == 0)
 		i = ft_found_c('0', i);

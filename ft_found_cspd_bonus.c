@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_found_cspd_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 22:15:03 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/05 17:44:18 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int	ft_p_len_bonus(size_t hex, int len);
 
 int	ft_found_c_bonus(int c, int i, char flag, int n)
 {
@@ -44,20 +42,20 @@ int	ft_found_s_bonus(char *s, int i, char flag, int n)
 	len = ft_strlen_bonus(s);
 	if (i == 1)
 		i--;
-	if (flag == '-')
-		i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
-	else if (flag == '.')
-	{
-		while (dot_i < n && s[dot_i])
-		{
-			i = ft_found_c(s[dot_i], i);
-			dot_i++;
-		}
-	}
-	else if (flag == ' ')
-		i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
+	if (!s && n > 6)
+		i = ft_flagf_bonus(6, n, flag, 0) + ft_found_s("(null)", 0);
 	else
-		i = ft_found_s(s, i);
+	{
+		if (flag == '-')
+			i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
+		else if (flag == '.')
+			while (dot_i < n && s[dot_i])
+				i = ft_found_c(s[dot_i++], i);
+		else if (flag == ' ')
+			i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
+		else
+			i = ft_found_s(s, i);
+	}
 	return (i);
 }
 
@@ -76,7 +74,7 @@ int	ft_found_p_bonus(size_t p, int i, char flag, int n)
 	return (i);
 }
 
-static int	ft_p_len_bonus(size_t hex, int len)
+int	ft_p_len_bonus(size_t hex, int len)
 {
 	if (hex == 0)
 		len++;

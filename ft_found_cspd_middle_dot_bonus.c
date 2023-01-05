@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/04 20:44:00 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/05 19:25:58 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,75 @@ int	ft_found_s_md_bonus(char *s, int b, int a, char flag)
 	int	len;
 
 	i = 0;
-	j = 0;
-	len = ft_strlen_bonus(s);
-	while (len < b--)
-		i += ft_found_c(' ', 0);
-	while (a < len--)
-		i += ft_found_c(' ', 0);
-	while (s[j] && len-- >= 0)
-		i += ft_found_c(s[j++], 0);
+	if (!s && a > 6 && flag == '-')
+		i = ft_found_s("(null)", 0) + ft_flagf_bonus(6, b, ' ', 0);
+	else if (!s && a > 6)
+		i = ft_flagf_bonus(6, b, ' ', 0) + ft_found_s("(null)", 0);
+	else if (!s)
+		i = ft_found_s("       ", 0); 
+	else
+	{
+		len = ft_strlen_bonus(s);
+		j = 0;
+		if (flag == ' ')
+		{
+			i = ft_flagf_bonus(len, b, ' ', 0);
+			while (a < len--)
+				i = ft_found_c(' ', i);
+			while (s[j] && len-- >= 0)
+				i = ft_found_c(s[j++], i);
+		}
+		else if (flag == '-')
+		{
+			while (s[j] && a-- > 0)
+				i = ft_found_c(s[j++], i);
+			while (s[j++])
+				i = ft_found_c(' ', i);
+			i = ft_flagf_bonus(len, b, ' ', i);
+		}
+	}
 	return (i);
 }
 
 int	ft_found_p_md_bonus(size_t p, int b, int a, char flag)
 {
-	// int	len;
+	int	i;
+	int	len;
 
-	// len = 2;
-	// len = ft_p_len_bonus(p, len);
-	// if (i == 1)
-	// 	write(1, " ", 1);
-	// if (flag == '-')
-	// 	i = ft_found_p(p, i) + ft_flagf_bonus(len, n, ' ', i);
-	// else
-	// 	i = ft_flagf_bonus(len, n, ' ', i) + ft_found_p(p, i);
-	// return (i);
-	return (0);
+	if (!p && flag == '-')
+		i = ft_found_p(p, 0) + ft_flagf_bonus(5, b, ' ', 0);
+	else if (!p && flag == ' ')
+		i = ft_flagf_bonus(5, b, ' ', 0) + ft_found_p(p, 0);
+	else
+	{
+		i = 0;
+		len = ft_p_len_bonus(p, i);
+		if (flag == '-')
+		{
+			i = ft_found_s("0x", i);
+			i += ft_flagf_bonus(len, a, '0', 0) + ft_to_hex(p, 0);
+		}
+		if (len < b)
+			while (len < b-- - 2 && a < b - 1)
+				i = ft_found_c(' ', i);
+		if (flag == ' ')
+		{
+			i = ft_found_s("0x", i);
+			i += ft_flagf_bonus(len, a, '0', 0) + ft_to_hex(p, 0);
+		}
+	}
+	return (i);
 }
 
 int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 {
-	// char	*d_;
-	// int		len;
+	int		i;
+	char	*d_;
+	int		len;
 
-	// d_ = ft_itoa_bonus(d);
-	// len = ft_strlen_bonus(d_);
+	i = 0;
+	d_ = ft_itoa_bonus(d);
+	len = ft_strlen_bonus(d_);
 	// if (i == 1 && (d >= 0))
 	// 	write(1, " ", 1);
 	// else if (i == 1)

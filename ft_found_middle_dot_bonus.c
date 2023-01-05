@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:20:40 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/04 20:29:22 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/05 18:24:27 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,41 @@ int	ft_found_md_bonus(const char *f, va_list args, int j, int m)
 	char	*b;
 	char	*a;
 
+	i = 0;
 	k = ft_check_bonus(f, j, "-0123456789.# +") + j;
 	n = ft_checknum_bonus(f, j, "123456789", k) + j;
-	// if there is 0
+	n_ = ft_checknum_bonus(f, j, "0123456789", k) + j;
+	// if there is -
+	// printf("n         --> %d\n", n);
+	// printf("n_        --> %d\n", n_);
+	// printf("m         --> %d\n", m);
+	// printf("k         --> %d\n", k);
+	// printf("m - n + 1 --> %d\n", m - n + 1);
+	// printf("n - m + 1 --> %d\n", n - m + 1);
 	// n_ = ft_checknum_bonus(f, j, "0123456789", k) + j;
-	b = ft_m_bonus((char *)malloc((n - m + 1) * sizeof(char)), f, n, m - n);
+	b = ft_m_bonus((char *)malloc((m - n + 1) * sizeof(char)), f, n, m - n);
 	m++;
-	a = ft_m_bonus((char *)malloc((k - m) * sizeof(char)), f, m, k - m);
-	i = ft_printf_md_bonus(f[k], args, ft_atoi_bonus(b), ft_atoi_bonus(a));
+	// printf("m         --> %d\n", m);
+	// printf("k - m     --> %d\n", k - m);
+	a = ft_m_bonus((char *)malloc((k - m + 1) * sizeof(char)), f, m, k - m);
+	// printf("a         --> %s\n", a);
+	while (f[j] && j < n)
+	{
+		if (f[j] == '-')
+			i = ft_m_md_bonus(f[k], args, ft_atoi_bonus(b), ft_atoi_bonus(a));
+		/* if (f[j] == '0')
+			return (ft_found_zero_bonus(f[k], args, a, i));
+		if (f[j] == '.')
+			return (ft_found_dot_bonus(f[k], args, a, i));
+		if (f[j] == '#')
+			return (ft_found_sharp_bonus(f[k], args, a, i)); */
+		j++;
+	}
+	if (i == 0)
+		i = ft_printf_md_bonus(f[k], args, ft_atoi_bonus(b), ft_atoi_bonus(a));
 	free (b);
 	free (a);
+
 	// while (n < k)
 	// {
 	// 	if (f[j] == ' ')

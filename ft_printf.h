@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:53:02 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/04 19:54:21 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/05 18:02:04 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		ft_check_bonus(const char *format, int j, char *flags);
 int		ft_found_c(int c, int i);
 int		ft_found_s(char *s, int i);
 int		ft_found_p(size_t p, int i);
+int	    ft_to_hex(size_t hex, int i);
 int		ft_found_i_plus_d(int d, int i);
 int		ft_found_u(unsigned int u, int i);
 int		ft_found_x(size_t x, int i);
@@ -45,6 +46,7 @@ int		ft_found_c_bonus(int c, int i, char flag, int n);
 int		ft_found_s_bonus(char *s, int i, char flag, int n);
 int		ft_found_i_plus_d_bonus(int d, int i, char flag, int n);
 int		ft_found_p_bonus(size_t p, int i, char flag, int n);
+int     ft_p_len_bonus(size_t hex, int len);
 int		ft_found_u_bonus(unsigned int u, int i, char flag, int n);
 int		ft_found_x_bonus(size_t x, int i, char flag, int n);
 int		ft_found_bigx_bonus(size_t bigx, int i, char flag, int n);
@@ -59,5 +61,6 @@ int		ft_found_i_plus_d_md_bonus(int d,int b, int a, char flag);
 int		ft_found_u_md_bonus(unsigned int u,int b, int a, char flag);
 int		ft_found_x_md_bonus(size_t x,int b, int a, char flag);
 int		ft_found_bigx_md_bonus(size_t bigx,int b, int a, char flag);
+int	    ft_m_md_bonus(const char f, va_list args, int b, int a);
 
 #endif
