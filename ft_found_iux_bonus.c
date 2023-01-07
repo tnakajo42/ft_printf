@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_found_iux_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 21:48:01 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/06 17:07:01 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int	ft_x_len_bonus(size_t x, int len);
 
 int	ft_found_u_bonus(unsigned int u, int i, char flag, int n)
 {
@@ -79,7 +77,7 @@ int	ft_found_bigx_bonus(size_t bigx, int i, char flag, int n)
 	return (i);
 }
 
-static int	ft_x_len_bonus(size_t x, int len)
+int	ft_x_len_bonus(size_t x, int len)
 {
 	unsigned int	u;
 

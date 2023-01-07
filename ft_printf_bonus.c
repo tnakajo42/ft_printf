@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/04 20:14:55 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/07 19:22:28 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ static int	ft_printd_bonus(const char *f, va_list args, int j, int i)
 	n = ft_checknum_bonus(f, j, "123456789", k) + j;
 	n_ = ft_checknum_bonus(f, j, "0123456789", k) + j;
 	while (n_++ < k - 1)
-		if (f[n_] == '.')
+		if (f[n_] == '.' && f[k - 1] != '.')
 			return (i + ft_found_md_bonus(f, args, j, n_));
 	if (f[k - 1] == '.')
-		a = ft_m_bonus((char *)malloc((k - n) * sizeof(char)), f, n, k - n - 1);
+		return (ft_printd_ad_bonus(f, args, j, i));
 	else
 		a = ft_m_bonus((char *)malloc((k - n + 1) * sizeof(char)), f, n, k - n);
 	while (j <= n--)

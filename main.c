@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 22:30:31 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/05 19:19:18 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/07 13:56:39 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,66 @@
 #include <stdio.h>
 #include <limits.h>
 
-int	main(void)
+/* int	main(void)
 {
 	int	i;
 	char *test;
 	i = 0;
 	test = "test";
 
-	printf("____%%-1.3c%%-7.0c*%%01.2c*%%0.2c____\n");
-	i = ft_printf("*%-1.3c*%-7.0c*%01.2c*% 01.0c*\n", 'z', 'Z', '&', '^');
-	printf("%d\n", i);
-	i = printf("*%-1.3c*%-7.0c*%01.2c*% 01.0c*\n", 'z', 'Z', '&', '^');
-	printf("%d\n", i);
+	// printf("____%%-1.3c%%-7.0c*%%01.2c*%%0.2c____\n");
+	// i = ft_printf("*%+1.3c*%-7.0c*%03.2c*% 01.0c*\n", 'z', 'Z', '&', '^');
+	// printf("%d\n", i);
+	// i = printf("*%+1.3c*%-7.0c*%03.2c*% 01.0c*\n", 'z', 'Z', '&', '^');
+	// printf("%d\n", i);
 
-	printf("____%% 7.3s%%7.7s____\n");
-	i = ft_printf("% -0#7.3s*%+07.7s*%#7.1s[%-7.9s]%7.9s*\n", "hello", "world", NULL, NULL, NULL);
-	printf("%d\n", i);
-	i = printf("% -0#7.3s*%+07.7s*%#7.1s[%-7.9s]%7.9s*\n", "hello", "world", NULL, NULL, NULL);
-	printf("%d\n", i);
+	// printf("____%%s____\n");
+	// i = ft_printf("% -0#7.3s*%+ -7.7s*%#7.1s[%-7.9s]%7.9s*\n", "hello", "world", NULL, NULL, NULL);
+	// printf("%d\n", i);
+	// i = printf("% -0#7.3s*%+ -7.7s*%#7.1s[%-7.9s]%7.9s*\n", "hello", "world", NULL, NULL, NULL);
+	// printf("%d\n", i);
+	// i = ft_printf("%8s***\n", NULL);
+	// printf("%d\n", i);
+	// i = ft_printf("[%7s]\n", NULL);
+	// printf("%d\n", i);
+	// i = printf("[%7s]\n", NULL);
+	// printf("%d\n", i);
 
-	printf("____%%-21.20p*%%21.1p*%%21.18p____\n");
-	i = ft_printf("*%-21.2p*%-21.1p*%21.18p*\n", NULL, test, test);
+	// printf("____%%-21.20p*%%21.1p*%%21.18p____\n");
+	// i = ft_printf("*%-#00#- 21.2p*%+ -+21.1p*% #-+21.18p*\n", NULL, test, test);
+	// printf("%d\n", i);
+	// i = printf("*%-#00#- 21.2p*%-+21.1p*% #-+21.18p*\n", NULL, test, test);
+	// printf("%d\n", i);
+	
+	printf("____%%d____\n");
+	i = ft_printf("*%      +  7.2d*%+7.7d*% 1.2d*\n", 123, 4567, 890);
 	printf("%d\n", i);
-	i = printf("*%-21.2p*%-21.1p*%21.18p*\n", NULL, test, test);
+	i = printf("*%      +  7.2d*%+7.7d*% 1.2d*\n", 123, 4567, 890);
+	printf("%d\n", i);
+	i = ft_printf("%8.5i/%3.7i\n", 34, 3267);
+	printf("%d\n", i);
+	i = printf("%8.5i/%3.7i\n", 34, 3267);
 	printf("%d\n", i);
 	
-	// printf("____%%7.3d%%7.7d*____\n");
-	// i = ft_printf("*%        7.3d*%7.7d*\n", 123, 4567);
+	// printf("____%%u____\n");
+	// i = ft_printf("*%      +  7.2u*%+7.7u*% 1.2u*\n", 123, 4567, 890);
 	// printf("%d\n", i);
-	// i = printf("*%        7.3d*%7.7d*\n", 123, 4567);
-	// printf("%d\n", i);
-
-	// printf("____%%7.3d%%7.7d*____\n");
-	// i = ft_printf("*%7.3d*%d*\n", 123, 4567);
-	// printf("%d\n", i);
-	// i = printf("*%7.3d*%d*\n", 123, 4567);
+	// i = printf("*%      +  7.2u*%+7.7u*% 1.2u*\n", 123, 4567, 890);
 	// printf("%d\n", i);
 
-	// i = printf("%7.3d%7.7d\n", 12345, 12345);
+	// printf("____%%x____\n");
+	// i = ft_printf("*%      +  7.3x*%+7.8x*% 1.7x*\n", 123, 4567, 890);
 	// printf("%d\n", i);
+	// i = printf("*%      +  7.3x*%+7.8x*% 1.7x*\n", 123, 4567, 890);
+	// printf("%d\n", i);
+
+	// ft_printf("-->%0#7x<--\n", 171);
+	// printf("-->%0#7x<--\n\n\n\n\n", 171);
+	// ft_printf("%2.3s/%7.7s\n", "hello", "world");
+	// printf("%2.3s/%7.7s\n", "hello", "world");
 	
 	return (0);
-}
+} */
 
 /* int	main(void)
 {

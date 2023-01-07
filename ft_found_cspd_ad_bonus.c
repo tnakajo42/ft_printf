@@ -1,69 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_found_cspd_bonus.c                              :+:      :+:    :+:   */
+/*   ft_found_cspd_ad_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 19:46:50 by tnakajo          ###   ########.fr       */
+/*   Created: 2023/01/07 16:00:01 by tnakajo           #+#    #+#             */
+/*   Updated: 2023/01/07 19:34:35 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ft_printf.h"
 
-int	ft_found_c_bonus(int c, int i, char flag, int n)
+int	ft_found_s_ad_bonus(char *s, int i, char flag, int n)
 {
-	if (i == 1)
-		i--;
-	if (flag == '-')
-	{
-		i = ft_found_c(c, i);
-		while (n-- > 1)
-			i = ft_found_c(' ', i);
-	}
-	else if (flag == '0' || flag == ' ')
-	{
-		while (n-- > 1)
-			i = ft_found_c(' ', i);
-		i = ft_found_c(c, i);
-	}
-	else
-		i = ft_found_c(c, i);
-	return (i);
-}
-
-int	ft_found_s_bonus(char *s, int i, char flag, int n)
-{
-	int	len;
+	// int	len;
 	int	dot_i;
 
 	dot_i = 0;
 	if (i == 1)
 		i--;
 	if (!s && flag == '-')
-		i = ft_found_s("(null)", 0) + ft_flagf_bonus(6, n, ' ', 0);
-	else if (!s && flag == '.' && n >= 6)
-		i = ft_found_s("(null)", 0);
-	else if (!s && flag != '.')
-		i = ft_flagf_bonus(6, n, ' ', 0) + ft_found_s("(null)", 0);
-	else if (s)
+		i = ft_flagf_bonus(0, n, ' ', 0);
+	else if (!s)
+		i = ft_flagf_bonus(0, n, ' ', 0);
+	else
 	{
-		len = ft_strlen_bonus(s);
-		if (flag == '-' && n != 0)
-			i = ft_found_s(s, i) + ft_flagf_bonus(len, n , ' ', i);
-		else if (flag == '.')
-			while (s[dot_i] && dot_i < n)
-				i = ft_found_c(s[dot_i++], i);
-		else if (flag == ' ')
-			i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
-		else if (n != 0)
-			i = ft_found_s(s, i);
+		i = ft_flagf_bonus(0, n, ' ', 0);
+		// len = ft_strlen_bonus(s);
+		// if (flag == '-')
+		// 	i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
+		// else if (flag == '.')
+		// 	while (dot_i < n && s[dot_i])
+		// 		i = ft_found_c(s[dot_i++], i);
+		// else if (flag == ' ')
+		// 	i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
+		// else
+		// 	i = ft_found_s(s, i);
 	}
 	return (i);
 }
 
-int	ft_found_p_bonus(size_t p, int i, char flag, int n)
+int	ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n)
+{
+	// int	len;
+	int	dot_i;
+
+	dot_i = 0;
+	if (i == 1)
+		i--;
+	if (!s && flag == '-')
+		i = ft_flagf_bonus(0, n, ' ', 0);
+	else if (!s)
+		i = ft_flagf_bonus(0, n, ' ', 0);
+	else
+	{
+		i = ft_flagf_bonus(0, n, ' ', 0);
+		// len = ft_strlen_bonus(s);
+		// if (flag == '-')
+		// 	i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
+		// else if (flag == '.')
+		// 	while (dot_i < n && s[dot_i])
+		// 		i = ft_found_c(s[dot_i++], i);
+		// else if (flag == ' ')
+		// 	i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
+		// else
+		// 	i = ft_found_s(s, i);
+	}
+	return (i);
+}
+
+
+/* int	ft_found_p_bonus(size_t p, int i, char flag, int n)
 {
 	int	len;
 
@@ -76,9 +85,9 @@ int	ft_found_p_bonus(size_t p, int i, char flag, int n)
 	else
 		i = ft_flagf_bonus(len, n, ' ', i) + ft_found_p(p, i);
 	return (i);
-}
+} */
 
-int	ft_p_len_bonus(size_t hex, int len)
+/* int	ft_p_len_bonus(size_t hex, int len)
 {
 	if (hex == 0)
 		len++;
@@ -90,9 +99,9 @@ int	ft_p_len_bonus(size_t hex, int len)
 	else
 		len++;
 	return (len);
-}
+} */
 
-int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
+/* int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
 {
 	char	*d_;
 	int		len;
@@ -116,4 +125,4 @@ int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
 		i = ft_flagf_bonus(len, n, ' ', i) + ft_found_i_plus_d(d, i);
 	free(d_);
 	return (i);
-}
+} */
