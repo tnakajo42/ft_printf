@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 16:00:01 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 19:34:35 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 18:13:14 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 int	ft_found_s_ad_bonus(char *s, int i, char flag, int n)
 {
-	// int	len;
-	int	dot_i;
-
-	dot_i = 0;
 	if (i == 1)
 		i--;
 	if (!s && flag == '-')
@@ -26,28 +22,12 @@ int	ft_found_s_ad_bonus(char *s, int i, char flag, int n)
 	else if (!s)
 		i = ft_flagf_bonus(0, n, ' ', 0);
 	else
-	{
 		i = ft_flagf_bonus(0, n, ' ', 0);
-		// len = ft_strlen_bonus(s);
-		// if (flag == '-')
-		// 	i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
-		// else if (flag == '.')
-		// 	while (dot_i < n && s[dot_i])
-		// 		i = ft_found_c(s[dot_i++], i);
-		// else if (flag == ' ')
-		// 	i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
-		// else
-		// 	i = ft_found_s(s, i);
-	}
 	return (i);
 }
 
-int	ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n)
+/* int	ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n)
 {
-	// int	len;
-	int	dot_i;
-
-	dot_i = 0;
 	if (i == 1)
 		i--;
 	if (!s && flag == '-')
@@ -55,21 +35,9 @@ int	ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n)
 	else if (!s)
 		i = ft_flagf_bonus(0, n, ' ', 0);
 	else
-	{
 		i = ft_flagf_bonus(0, n, ' ', 0);
-		// len = ft_strlen_bonus(s);
-		// if (flag == '-')
-		// 	i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
-		// else if (flag == '.')
-		// 	while (dot_i < n && s[dot_i])
-		// 		i = ft_found_c(s[dot_i++], i);
-		// else if (flag == ' ')
-		// 	i = ft_flagf_bonus(len, n, ' ', i) + ft_found_s(s, i);
-		// else
-		// 	i = ft_found_s(s, i);
-	}
 	return (i);
-}
+} */
 
 
 /* int	ft_found_p_bonus(size_t p, int i, char flag, int n)
@@ -101,28 +69,25 @@ int	ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n)
 	return (len);
 } */
 
-/* int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
+int	ft_found_i_plus_d_ad_bonus(int d, int i, char flag, int n)
+{
+	if (d == 0)
+	{
+		i = ft_flagf_bonus(0, n, ' ', i);
+		return (i);
+	}
+	return (ft_found_i_plus_d_bonus(d, i, flag, n));
+}
+
+/* int	ft_found_i_plus_d_ad_mi_bonus(int d, int i, char flag, int n)
 {
 	char	*d_;
 	int		len;
 
-	d_ = ft_itoa_bonus(d);
-	len = ft_strlen_bonus(d_);
-	if (i == 1 && (d >= 0))
-		write(1, " ", 1);
-	else if (i == 1)
-		i--;
-	if (flag == '0' || flag == '.')
+	if (d == 0)
 	{
-		if (d < 0 || d == -2147483648)
-			i = ft_print_minusd_bonus(d_, n, flag, i);
-		else
-			i = ft_flagf_bonus(len, n, '0', i) + ft_found_i_plus_d(d, i);
+		i = ft_flagf_bonus(0, n, ' ', i);
+		return (i);
 	}
-	else if (flag == '-')
-		i = ft_found_i_plus_d(d, i) + ft_flagf_bonus(len, n, ' ', i);
-	else if (flag == ' ')
-		i = ft_flagf_bonus(len, n, ' ', i) + ft_found_i_plus_d(d, i);
-	free(d_);
-	return (i);
+	return (ft_found_i_plus_d_bonus(d, i, flag, n));
 } */

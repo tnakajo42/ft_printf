@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:53:02 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 19:30:14 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 18:23:07 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 int		ft_printf(const char *format, ...);
 int		ft_printf_bonus(const char *f, va_list args, int j, int i);
+int     ft_printf_od_bonus(const char format, va_list args, int i);
 int 	ft_printd_ad_bonus(const char *f, va_list args, int j, int i);
 int		ft_check_bonus(const char *format, int j, char *flags);
 int		ft_found_c(int c, int i);
@@ -50,10 +51,12 @@ void	*ft_m_bonus(void *dest, const void *src, size_t n, size_t j);
 int		ft_found_c_bonus(int c, int i, char flag, int n);
 int		ft_found_s_bonus(char *s, int i, char flag, int n);
 int	    ft_found_s_mi_bonus(char *s, int i, int n);
-// int	    ft_found_s_mi_bonus(char *s, int i, char flag, int n);
 int 	ft_found_s_ad_bonus(char *s, int i, char flag, int n);
-int	    ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n);
+/* int	    ft_found_s_ad_mi_bonus(char *s, int i, char flag, int n); */
 int		ft_found_i_plus_d_bonus(int d, int i, char flag, int n);
+int	    ft_found_i_plus_d_mi_bonus(int d, int i, int n);
+int	    ft_found_i_plus_d_ad_bonus(int d, int i, char flag, int n);
+/* int	    ft_found_i_plus_d_ad_mi_bonus(int d, int i, char flag, int n); */
 int		ft_found_p_bonus(size_t p, int i, char flag, int n);
 int		ft_p_len_bonus(size_t hex, int len);
 int		ft_found_u_bonus(unsigned int u, int i, char flag, int n);

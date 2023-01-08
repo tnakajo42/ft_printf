@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 19:22:28 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/07 21:57:04 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_printf_bonus(const char *f, va_list args, int j, int i)
 	j_ = j;
 	if (ft_isdigit_bonus(f, j, k))
 		return (ft_printd_bonus(f, args, j, i));
-	if (f[k - 1] == '.' && f[k] == 's')
-		return (i);
+	if (f[k - 1] == '.')
+		return (ft_printf_od_bonus(f[k], args, i));
 	while (f[j])
 	{
 		if (f[j] == '#' && (f[k] == 'x' || f[k] == 'X'))
@@ -38,11 +38,8 @@ int	ft_printf_bonus(const char *f, va_list args, int j, int i)
 		j++;
 	}
 	while (f[j_])
-	{
-		if (f[j_] == ' ' && (f[k] == 'd' || f[k] == 'i' || f[k] == 's'))
+		if (f[j_++] == ' ' && (f[k] == 'd' || f[k] == 'i' || f[k] == 's'))
 			return (ft_found_space_bonus(f[k], args, i));
-		j_++;
-	}
 	return (ft_others_bonus(&f[k], args, i));
 }
 

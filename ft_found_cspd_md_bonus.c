@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 15:44:18 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 17:20:04 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,26 +99,99 @@ int	ft_found_p_md_bonus(size_t p, int b, int a, char flag)
 int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 {
 	int		i;
+	int		j;
 	char	*d_;
 	int		len;
 	int		b_;
+	int		a_;
 
 	i = 0;
+	j = 0;
 	d_ = ft_itoa_bonus(d);
 	len = ft_strlen_bonus(d_);
 	b_ = b;
-	if (flag == '+')
-		b_--;
-	if (len > a)
-		i = ft_flagf_bonus(len, b_, ' ', i);
-	if (flag == '+')
-		i = ft_found_c(flag, i);
-	if (flag == ' ')
-		i = ft_found_c(flag, i);
-	if (len < a)
+	a_ = a;
+
+	if (flag == '-')
 	{
-		i = ft_flagf_bonus(a, b, ' ', i) + ft_flagf_bonus(len, a, '0', i);
+		if (d_[j] == '-')
+		{
+			i = ft_found_c('-', i);
+			a++;
+			j++;
+		}
+		if (len < a)
+			while (len < a--)
+				i = ft_found_c('0', i);
+		if (a_ != 0)
+			while (d_[j] && a-- + 1 > 0)
+				i = ft_found_c(d_[j++], i);
+		while (b - i > 0)
+			i = ft_found_c(' ', i);
 	}
-	i = ft_found_i_plus_d(d, i);
+	else
+	{
+		if (d_[j] == '-')
+			b--;
+		if (len < a)
+		{
+			i = ft_flagf_bonus(a, b, ' ', i); // + ft_flagf_bonus(len, a, '0', 0);
+			if (d_[j] == '-')
+			{
+				i = ft_found_c('-', i);
+				len--;
+				j++;
+			}
+		}
+		else
+		{
+			if (d_[j] == '-')
+			{
+				i = ft_flagf_bonus(len - 1, b, ' ', i);
+				i = ft_found_c('-', i);
+				len--;
+				j++;
+			}
+			else
+				i = ft_flagf_bonus(len, b, ' ', i);
+		}
+		i = ft_flagf_bonus(len, a, '0', i);
+		// while ((a--) - len > 0)
+		// 	if (len < b)
+		// 		i = ft_found_c(' ', i);
+		if (b <= len && a >= len && a != 0)
+			while (a < len--)
+				if (len < b)
+					i = ft_found_c(' ', i);
+		if (a == 0)
+			return (ft_found_c(' ', i));	
+		while (d_[j])
+			i = ft_found_c(d_[j++], i);
+		// }
+		// else
+		// {
+		// 	while (d_[j] && len-- >= 0)
+		// 		i = ft_found_c(d_[j++], i);
+		// }
+	}
+	// printf("AAAAAAAAAA");
+
+	// if (flag == '+')
+	// 	b_--;
+	// if (len > a)
+	// 	i = ft_flagf_bonus(len, b_, ' ', i);
+	// if (flag == '+')
+	// 	i = ft_found_c(flag, i);
+	// if (flag == ' ')
+	// 	i = ft_found_c(flag, i);
+	// if (len < a)
+	// {
+	// 	i = ft_flagf_bonus(a, b, ' ', i) + ft_flagf_bonus(len, a, '0', i);
+	// }
+	// if (a != 0)
+	// 	i = ft_found_i_plus_d(d, i);
+	// else
+	// 	i = ft_found_c(' ', i);
+	free (d_);
 	return (i);
 }

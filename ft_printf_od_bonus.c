@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_ad_bonus.c                               :+:      :+:    :+:   */
+/*   ft_printf_od_bonus .c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 18:15:37 by tnakajo          ###   ########.fr       */
+/*   Created: 2023/01/07 21:17:07 by tnakajo           #+#    #+#             */
+/*   Updated: 2023/01/07 21:36:07 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,48 @@
 
 // static int	ft_others_bonus(const char *f, va_list args, int i);
 
-int	ft_found_minus_ad_bonus(const char format, va_list args, char *a, int i)
+int	ft_printf_od_bonus(const char format, va_list args, int i)
 {
-	int	n;
-
-	n = ft_atoi_bonus((char *)a);
 	if (format == 'c')
-		i = ft_found_c_bonus(va_arg(args, int), i, '-', n);
+		i = ft_found_c(va_arg(args, int), i);
 	else if (format == 's')
-		i = ft_found_s_ad_bonus(va_arg(args, char *), i, '-', n);
+		return (i);
 	else if (format == 'p')
-		i = ft_found_p_bonus(va_arg(args, unsigned long long), i, '-', n);
+		i = ft_found_s("(nil)", i);
 	else if (format == 'd' || format == 'i')
-		i = ft_found_i_plus_d_ad_bonus(va_arg(args, int), i, '-', n);
+		return (i);
 	else if (format == 'u')
-		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, '-', n);
+		return (i);
 	else if (format == 'x')
-		i = ft_found_x_bonus(va_arg(args, size_t), i, '-', n);
+		return (i);
 	else if (format == 'X')
-		i = ft_found_bigx_bonus(va_arg(args, size_t), i, '-', n);
+		return (i);
 	else if (format == '%')
-		i = ft_found_c_bonus('%', i, '-', 0);
+		i = ft_found_c('%', i);
 	else
-		i++;
-	free(a);
+		i = -1;
 	return (i);
 }
 
-int	ft_printd_ad_bonus(const char *f, va_list args, int j, int i)
-{
-	int		k;
-	int		n;
-	int		n_;
-	char	*a;
+// int	ft_printd_ad_bonus(const char *f, va_list args, int j, int i)
+// {
+// 	int		k;
+// 	int		n;
+// 	int		n_;
+// 	char	*a;
 
-	k = ft_check_bonus(f, j, "-0123456789.# +") + j;
-	n = ft_checknum_bonus(f, j, "123456789", k) + j;
-	n_ = ft_checknum_bonus(f, j, "0123456789", k) + j;
-	while (n_++ < k - 1)
-		if (f[n_] == '.' && f[k - 1] != '.')
-			return (i + ft_found_md_bonus(f, args, j, n_));
-	a = ft_m_bonus((char *)malloc((k - n) * sizeof(char)), f, n, k - n - 1);
-	while (j <= n--)
-		if (f[n] == '-' || f[n] == '0' || f[n] == '.' || f[n] == '#')
-			return (i + ft_found_mnd_ad_bonus(f, args, a, j));
-	return (i + ft_not_found_mnd_ad_bonus(f, args, a, j));
-}
+// 	k = ft_check_bonus(f, j, "-0123456789.# +") + j;
+// 	n = ft_checknum_bonus(f, j, "123456789", k) + j;
+// 	n_ = ft_checknum_bonus(f, j, "0123456789", k) + j;
+// 	while (n_++ < k - 1)
+// 		if (f[n_] == '.' && f[k - 1] != '.')
+// 			return (i + ft_found_md_bonus(f, args, j, n_));
+// 	a = ft_m_bonus((char *)malloc((k - n) * sizeof(char)), f, n, k - n - 1);
+// 	while (j <= n--)
+// 		if (f[n] == '-' || f[n] == '0' || f[n] == '.' || f[n] == '#')
+// 			return (i + ft_found_mnd_ad_bonus(f, args, a, j));
+// 	return (i + ft_not_found_mnd_ad_bonus(f, args, a, j));
+// }
 
 // static int	ft_others_bonus(const char *f, va_list args, int i)
 // {

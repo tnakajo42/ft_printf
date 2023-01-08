@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:15:54 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 19:29:33 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/07 23:06:32 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ int	ft_found_dot_mi_bonus(const char format, va_list args, char *a, int i)
 	int	n;
 
 	n = ft_atoi_bonus((char *)a);
-	if (format == 'c')
+	if (n == 0)
+		i = ft_printf_od_bonus(format, args, i);
+	else if (format == 'c')
 		i = ft_found_c_bonus(va_arg(args, int), i, '-', n);
 	else if (format == 's')
 		i = ft_found_s_mi_bonus(va_arg(args, char *), i, n);
 	else if (format == 'p')
 		i = ft_found_p_bonus(va_arg(args, unsigned long long), i, '-', n);
 	else if (format == 'd' || format == 'i')
-		i = ft_found_i_plus_d_bonus(va_arg(args, int), i, '-', n);
+		i = ft_found_i_plus_d_mi_bonus(va_arg(args, int), i, n);
 	else if (format == 'u')
 		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, '-', n);
 	else if (format == 'x')
@@ -98,6 +100,8 @@ int	ft_found_zero_bonus(const char format, va_list args, char *a, int i)
 	int	n;
 
 	n = ft_atoi_bonus((char *)a);
+	if (n == 0)
+		i = ft_printf_od_bonus(format, args, i);
 	if (format == 'c')
 		i = ft_found_c_bonus(va_arg(args, int), i, '0', n);
 	else if (format == 's')
@@ -123,7 +127,9 @@ int	ft_found_dot_bonus(const char format, va_list args, char *a, int i)
 	int	n;
 
 	n = ft_atoi_bonus((char *)a);
-	if (format == 'c')
+	if (n == 0)
+		i = ft_printf_od_bonus(format, args, i);
+	else if (format == 'c')
 		i = ft_found_c_bonus(va_arg(args, int), i, '.', n);
 	else if (format == 's')
 		i = ft_found_s_bonus(va_arg(args, char *), i, '.', n);
