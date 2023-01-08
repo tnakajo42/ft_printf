@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 16:10:37 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 18:20:50 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 19:11:34 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static int	ft_printf_not_mnd_ad_bonus(const char f, va_list args, int i, int n)
 	else if (f == 'd' || f == 'i')
 		i = ft_found_i_plus_d_ad_bonus(va_arg(args, int), i, ' ', n);
 	else if (f == 'u')
-		i = ft_found_u_bonus(va_arg(args, unsigned long long), i, ' ', n);
+		i = ft_found_u_ad_bonus(va_arg(args, unsigned long long), i, ' ', n);
 	else if (f == 'x')
 		i = ft_found_x_bonus(va_arg(args, size_t), i, ' ', n);
 	else if (f == 'X')

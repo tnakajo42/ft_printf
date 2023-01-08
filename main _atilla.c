@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 15:25:55 by akekesi           #+#    #+#             */
-/*   Updated: 2023/01/07 20:57:17 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 19:22:26 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	main(void)
 	// test_printf_x();
 	// test_printf_x_();
 	// test_printf_p();
-	test_printf_i();
-	// test_printf_d();
-	// test_printf_u();
+	// test_printf_i();
+	// test_printf_d(); // pok
+	// test_printf_u(); // pok
 
 
 	// printf("|-- get -->\n");
