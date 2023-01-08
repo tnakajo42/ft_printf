@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 17:20:04 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 22:40:08 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 	len = ft_strlen_bonus(d_);
 	b_ = b;
 	a_ = a;
-
 	if (flag == '-')
 	{
 		if (d_[j] == '-')
@@ -123,19 +122,29 @@ int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 		if (len < a)
 			while (len < a--)
 				i = ft_found_c('0', i);
-		if (a_ != 0)
-			while (d_[j] && a-- + 1 > 0)
+		if (a_ == 0 && d == 0)
+			while (b - i > 0)
+				i = ft_found_c(' ', i);
+		else
+		{
+			while (d_[j])
 				i = ft_found_c(d_[j++], i);
-		while (b - i > 0)
-			i = ft_found_c(' ', i);
+			while (b - i > 0)
+				i = ft_found_c(' ', i);
+		}
+		// if (a_ != 0)
+		// 	while (d_[j] && a-- + 1 > 0)
+		// 		i = ft_found_c(d_[j++], i);
+		// while (b - i > 0)
+		// 	i = ft_found_c(' ', i);
 	}
 	else
 	{
 		if (d_[j] == '-')
 			b--;
-		if (len < a)
+		if (len <= a)
 		{
-			i = ft_flagf_bonus(a, b, ' ', i); // + ft_flagf_bonus(len, a, '0', 0);
+			i = ft_flagf_bonus(a, b, ' ', i);
 			if (d_[j] == '-')
 			{
 				i = ft_found_c('-', i);
@@ -147,9 +156,9 @@ int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 		{
 			if (d_[j] == '-')
 			{
-				i = ft_flagf_bonus(len - 1, b, ' ', i);
+				// i = ft_flagf_bonus(--len, b, ' ', i);
+				i = ft_flagf_bonus(--len, b, ' ', i);
 				i = ft_found_c('-', i);
-				len--;
 				j++;
 			}
 			else
@@ -163,7 +172,7 @@ int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 			while (a < len--)
 				if (len < b)
 					i = ft_found_c(' ', i);
-		if (a == 0)
+		if (a_ == 0 && d == 0)
 			return (ft_found_c(' ', i));	
 		while (d_[j])
 			i = ft_found_c(d_[j++], i);
@@ -174,7 +183,6 @@ int	ft_found_i_plus_d_md_bonus(int d, int b, int a, char flag)
 		// 		i = ft_found_c(d_[j++], i);
 		// }
 	}
-	// printf("AAAAAAAAAA");
 
 	// if (flag == '+')
 	// 	b_--;

@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 23:15:13 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 21:53:24 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_found_s_mi_bonus(char *s, int i, int n)
 	dot_i = 0;
 	if (i == 1)
 		i--;
+	if (!s && n == 0)
+		return (i);
 	if (!s)
 		i = ft_found_s("(null)", 0);
 	else
@@ -68,6 +70,8 @@ int	ft_found_i_plus_d_mi_bonus(int d, int i, int n)
 
 	d_ = ft_itoa_bonus(d);
 	len = ft_strlen_bonus(d_);
+	if (!d && n == 0)
+		return (i);
 	if (i == 1 && (d >= 0))
 		write(1, " ", 1);
 	else if (i == 1)

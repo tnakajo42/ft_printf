@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 19:13:17 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 20:17:16 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_found_minus_ad_bonus(const char format, va_list args, char *a, int i)
 	else if (format == 'u')
 		i = ft_found_u_ad_bonus(va_arg(args, unsigned long long), i, '-', n);
 	else if (format == 'x')
-		i = ft_found_x_bonus(va_arg(args, size_t), i, '-', n);
+		i = ft_found_x_ad_bonus(va_arg(args, size_t), i, '-', n);
 	else if (format == 'X')
-		i = ft_found_bigx_bonus(va_arg(args, size_t), i, '-', n);
+		i = ft_found_bigx_ad_bonus(va_arg(args, size_t), i, '-', n);
 	else if (format == '%')
 		i = ft_found_c_bonus('%', i, '-', 0);
 	else

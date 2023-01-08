@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 16:41:12 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/07 22:53:49 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 21:39:50 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_found_mnd_bonus(const char *f, va_list args, char *a, int j)
 {
 	int	i;
 	int	k;
-	
+
 	i = 0;
 	k = ft_check_bonus(f, j, "-0123456789.# +") + j;
 	while (f[j] && j < k)

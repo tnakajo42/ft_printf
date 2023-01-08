@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 17:44:54 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 22:19:30 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,26 @@ int	ft_found_p_bonus(size_t p, int i, char flag, int n)
 {
 	int	len;
 
+	if (!p && n == 0)
+		return (ft_found_s("(nil)", i));
 	len = 2;
 	len = ft_p_len_bonus(p, len);
 	if (i == 1)
 		write(1, " ", 1);
 	if (flag == '-')
-		i = ft_found_p(p, i) + ft_flagf_bonus(len, n, ' ', i);
+	{
+		if (!p)
+			i = ft_found_p(p, i) + ft_flagf_bonus(len, n - 2, ' ', i);
+		else
+			i = ft_found_p(p, i) + ft_flagf_bonus(len, n, ' ', i);
+	}
 	else
-		i = ft_flagf_bonus(len, n, ' ', i) + ft_found_p(p, i);
+	{
+		if (!p)
+			i = ft_flagf_bonus(len, n - 2, ' ', i) + ft_found_p(p, i);
+		else
+			i = ft_flagf_bonus(len, n, ' ', i) + ft_found_p(p, i);
+	}
 	return (i);
 }
 
@@ -97,6 +109,8 @@ int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
 	char	*d_;
 	int		len;
 
+	if ((!d || d == 0) && n == 0 && flag == '.')
+		return (i);
 	d_ = ft_itoa_bonus(d);
 	len = ft_strlen_bonus(d_);
 	if (i == 1 && (d >= 0))

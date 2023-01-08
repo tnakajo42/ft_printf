@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/06 17:07:01 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/08 23:30:08 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	ft_found_u_bonus(unsigned int u, int i, char flag, int n)
 
 	u_ = ft_itoa_bonus((long)u);
 	len = ft_strlen_bonus(u_);
+	if (!u && n == 0)
+	{
+		free (u_);
+		return (i);
+	}
 	if (i == 1)
 		i--;
 	if (flag == '-')
@@ -37,6 +42,8 @@ int	ft_found_x_bonus(size_t x, int i, char flag, int n)
 
 	len = 0;
 	len = ft_x_len_bonus(x, len);
+	if (flag == '.' &&n == 0 && x == 0)
+		return (i);
 	if (flag == '-')
 		i = ft_found_x(x, i) + ft_flagf_bonus(len, n, ' ', i);
 	else if (flag == '0' || flag == '.')
@@ -60,6 +67,8 @@ int	ft_found_bigx_bonus(size_t bigx, int i, char flag, int n)
 
 	len = 0;
 	len = ft_x_len_bonus(bigx, len);
+	if (flag == '.' &&n == 0 && bigx == 0)
+		return (i);
 	if (flag == '-')
 		i = ft_found_bigx(bigx, i) + ft_flagf_bonus(len, n, ' ', i);
 	else if (flag == '0' || flag == '.')
