@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 21:53:24 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:10:43 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ int	ft_found_i_plus_d_mi_bonus(int d, int i, int n)
 		i--;
 	// if (flag == '0' || flag == '.')
 	// {
-		// if (d < 0 || d == -2147483648)
-		// 	i = ft_print_minusd_bonus(d_, n, flag, i);
-		// else
-		// 	i = ft_flagf_bonus(len, n, '0', i) + ft_found_i_plus_d(d, i);
+	if (d < 0 || d == -2147483648)
+		i = ft_print_minusd_bonus(d_, n, '.', i);
+	else
+		i = ft_flagf_bonus(len, n, '0', i) + ft_found_i_plus_d(d, i);
 	// }
 	// else if (flag == '-')
-	i += ft_flagf_bonus(len, n, '0', 0) + ft_found_i_plus_d(d, 0) ;
+	// i += ft_flagf_bonus(len, n, '0', 0) + ft_found_i_plus_d(d, 0) ;
 	// else if (flag == ' ')
 	// 	i = ft_flagf_bonus(len, n, ' ', i) + ft_found_i_plus_d(d, i);
 	free(d_);

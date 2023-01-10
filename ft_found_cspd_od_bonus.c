@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flagf_bonus.c                                   :+:      :+:    :+:   */
+/*   ft_found_cspd_od_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 20:28:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/10 16:15:36 by tnakajo          ###   ########.fr       */
+/*   Created: 2023/01/10 17:12:18 by tnakajo           #+#    #+#             */
+/*   Updated: 2023/01/10 18:26:07 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ft_printf.h"
 
-int	ft_flagf_bonus(int len, int n, char flag, int i)
+int	ft_found_p_od_bonus(size_t p, int i)
 {
-	while (len < n--)
-		i = ft_found_c(flag, i);
+	if (!p)
+		i = ft_found_s("(nil)", i);
+	else
+		i = ft_found_p(p, i);
 	return (i);
 }
 
-int	ft_print_minusd_bonus(char *d_, int n, char flag, int i)
+int	ft_found_i_plus_d_od_bonus(int d, int i)
 {
-	int	d_i;
-	int	len;
-
-	d_i = 1;
-	len = ft_strlen_bonus(d_);
-	if (flag == 'Z')
-		i = ft_flagf_bonus(len, n++, ' ', i) + ft_found_c('-', i);
+	if (!d)
+		return (i);
 	else
-	{
-		i = ft_found_c('-', i);
-		if (flag == '.')
-			n++;
-		i = ft_flagf_bonus(len, n, '0', i);
-	}
-	while (d_[d_i])
-		i = ft_found_c(d_[d_i++], i);
+		i = ft_found_i_plus_d(d, i);
 	return (i);
 }

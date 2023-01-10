@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flagf_bonus.c                                   :+:      :+:    :+:   */
+/*   ft_found_iux_od_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 20:28:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/10 16:15:36 by tnakajo          ###   ########.fr       */
+/*   Created: 2023/01/04 19:21:16 by tnakajo           #+#    #+#             */
+/*   Updated: 2023/01/10 18:26:13 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_flagf_bonus(int len, int n, char flag, int i)
+int	ft_found_u_od_bonus(unsigned int u, int i)
 {
-	while (len < n--)
-		i = ft_found_c(flag, i);
+	if (!u)
+		return (i);
+	else
+		i = ft_found_u(u, i);
 	return (i);
 }
 
-int	ft_print_minusd_bonus(char *d_, int n, char flag, int i)
+int	ft_found_x_od_bonus(size_t x, int i)
 {
-	int	d_i;
-	int	len;
-
-	d_i = 1;
-	len = ft_strlen_bonus(d_);
-	if (flag == 'Z')
-		i = ft_flagf_bonus(len, n++, ' ', i) + ft_found_c('-', i);
+	if (!x)
+		return (i);
 	else
-	{
-		i = ft_found_c('-', i);
-		if (flag == '.')
-			n++;
-		i = ft_flagf_bonus(len, n, '0', i);
-	}
-	while (d_[d_i])
-		i = ft_found_c(d_[d_i++], i);
+		i = ft_found_x(x, i);
+	return (i);
+}
+
+int	ft_found_bigx_od_bonus(size_t bigx, int i)
+{
+	if (!bigx)
+		return (i);
+	else
+		i = ft_found_bigx(bigx, i);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 16:10:37 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 20:15:41 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:55:25 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_found_mnd_ad_bonus(const char *f, va_list args, char *a, int j)
 			return (ft_found_minus_ad_bonus(f[k], args, a, i));
 			// return (ft_found_mnd_ad_sub_bonus(f, args, a, j));
 		if (f[j] == '0')
-			return (ft_found_zero_bonus(f[k], args, a, i));
+			return (ft_found_zero_ad_bonus(f[k], args, a, i));
 		if (f[j] == '#')
 			return (ft_found_sharp_bonus(f[k], args, a, i));
 		j++;

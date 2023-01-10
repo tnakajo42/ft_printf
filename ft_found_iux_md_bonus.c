@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:21:16 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 20:02:57 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/10 16:12:19 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int	ft_found_u_md_bonus(unsigned int u, int b, int a, char flag)
 		if (len < a)
 			while (len < a--)
 				i = ft_found_c('0', i);
-		if (a_ != 0)
-			while (u_[j] && a-- + 1 > 0)
-				i = ft_found_c(u_[j++], i);
+		if (u == 0 && a_ == 0)
+			i = ft_found_c(' ', i);
+		else
+			i = ft_found_s(u_, i);
 		while (b - i > 0)
 			i = ft_found_c(' ', i);
 	}
@@ -47,10 +48,10 @@ int	ft_found_u_md_bonus(unsigned int u, int b, int a, char flag)
 			while (a < len--)
 				if (len < b)
 					i = ft_found_c(' ', i);
-		if (a_ == 0)
-			return (ft_found_c(' ', i));	
-		while (u_[j])
-			i = ft_found_c(u_[j++], i);
+		if (a_ == 0 && u == 0)
+			i = ft_found_c(' ', i);
+		else
+			i = ft_found_s(u_, i);
 	}
 	free (u_);
 	return (i);
@@ -70,8 +71,12 @@ int	ft_found_x_md_bonus(size_t x, int b, int a, char flag)
 		if (len < a)
 			while (len < a--)
 				i = ft_found_c('0', i);
-		if (a_ != 0)
+		if (x == 0 && a_ == 0)
+			i = ft_found_c(' ', i);
+		else
 			i = ft_found_x(x, i);
+		// if (a_ != 0)
+		// 	i = ft_found_x(x, i);
 		// if (a_ != 0)
 		// 	while (u_[j] && a-- + 1 > 0)
 		// 		i = ft_found_c(u_[j++], i);
@@ -89,7 +94,7 @@ int	ft_found_x_md_bonus(size_t x, int b, int a, char flag)
 			while (a < len--)
 				if (len < b)
 					i = ft_found_c(' ', i);
-		if (a_ == 0)
+		if (a_ == 0 && x == 0)
 			return (ft_found_c(' ', i));
 		i = ft_found_x(x, i);
 	}
@@ -110,8 +115,12 @@ int	ft_found_bigx_md_bonus(size_t bigx, int b, int a, char flag)
 		if (len < a)
 			while (len < a--)
 				i = ft_found_c('0', i);
-		if (a_ != 0)
+		if (bigx == 0 && a_ == 0)
+			i = ft_found_c(' ', i);
+		else
 			i = ft_found_bigx(bigx, i);
+		// if (a_ != 0)
+		// 	i = ft_found_bigx(bigx, i);
 		while (b - i > 0)
 			i = ft_found_c(' ', i);
 	}
@@ -126,7 +135,7 @@ int	ft_found_bigx_md_bonus(size_t bigx, int b, int a, char flag)
 			while (a < len--)
 				if (len < b)
 					i = ft_found_c(' ', i);
-		if (a_ == 0)
+		if (a_ == 0 && bigx == 0)
 			return (ft_found_c(' ', i));
 		i = ft_found_bigx(bigx, i);
 	}
