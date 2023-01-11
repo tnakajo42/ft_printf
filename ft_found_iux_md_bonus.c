@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:21:16 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 21:15:51 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 00:18:52 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ int	ft_found_u_md_bonus(unsigned int u, int b, int a)
 	int		j;
 	char	*u_;
 	int		len;
-	int		a_;
 
 	i = 0;
 	j = 0;
 	u_ = ft_itoa_bonus((long)u);
 	len = ft_strlen_bonus(u_);
-	a_ = a;
 	if (len < a)
 		i = ft_flagf_bonus(a, b, ' ', i);
 	else
@@ -34,7 +32,7 @@ int	ft_found_u_md_bonus(unsigned int u, int b, int a)
 		while (a < len--)
 			if (len < b)
 				i = ft_found_c(' ', i);
-	if (a_ == 0 && u == 0)
+	if (a == 0 && u == 0)
 		i = ft_found_c(' ', i);
 	else
 		i = ft_found_s(u_, i);

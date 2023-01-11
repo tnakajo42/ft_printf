@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:28:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 19:58:59 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 00:28:20 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,32 @@ int	ft_p_len_bonus(size_t hex, int len)
 	else
 		len++;
 	return (len);
+}
+
+int	ft_md_sub_bonus(const char f, va_list args, int b_, int a_)
+{
+	int	i;
+
+	i = 0;
+	if (f == 's')
+		i = ft_found_s_md_bonus(va_arg(args, char *), b_, a_);
+	else if (f == 'd' || f == 'i')
+		i = ft_found_i_plus_d_md_bonus(va_arg(args, int), b_, a_);
+	else if (f == 'u')
+		i = ft_found_u_md_bonus(va_arg(args, unsigned int), b_, a_);
+	return (i);
+}
+
+int	ft_md_mi_sub_bonus(const char f, va_list args, int b_, int a_)
+{
+	int	i;
+
+	i = 0;
+	if (f == 's')
+		i = ft_found_s_md_mi_bonus(va_arg(args, char *), b_, a_);
+	else if (f == 'd' || f == 'i')
+		i = ft_found_i_plus_d_md_mi_bonus(va_arg(args, int), b_, a_);
+	else if (f == 'u')
+		i = ft_found_u_md_mi_bonus(va_arg(args, unsigned int), b_, a_);
+	return (i);
 }

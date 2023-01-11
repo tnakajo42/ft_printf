@@ -6,11 +6,13 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 20:51:42 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 00:12:51 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_found_i_plus_d_md_mi_sub_bonus(char *d_, int a, int len);
 
 int	ft_found_s_md_mi_bonus(char *s, int b, int a)
 {
@@ -67,23 +69,14 @@ int	ft_found_i_plus_d_md_mi_bonus(int d, int b, int a)
 	int		j;
 	char	*d_;
 	int		len;
-	int		a_;
 
-	i = 0;
 	j = 0;
 	d_ = ft_itoa_bonus(d);
 	len = ft_strlen_bonus(d_);
-	a_ = a;
+	i = ft_found_i_plus_d_md_mi_sub_bonus(d_, a, len);
 	if (d_[j] == '-')
-	{
-		i = ft_found_c('-', i);
-		a++;
 		j++;
-	}
-	if (len < a)
-		while (len < a--)
-			i = ft_found_c('0', i);
-	if (a_ == 0 && d == 0)
+	if (a == 0 && d == 0)
 		while (b - i > 0)
 			i = ft_found_c(' ', i);
 	else
@@ -94,5 +87,25 @@ int	ft_found_i_plus_d_md_mi_bonus(int d, int b, int a)
 			i = ft_found_c(' ', i);
 	}
 	free (d_);
+	return (i);
+}
+
+static int	ft_found_i_plus_d_md_mi_sub_bonus(char *d_, int a, int len)
+{
+	int	i;
+	int	j;
+	int	d;
+
+	i = 0;
+	j = 0;
+	d = ft_atoi_bonus(d_);
+	if (d_[j] == '-')
+	{
+		i = ft_found_c('-', i);
+		a++;
+		j++;
+	}
+	if (len < a)
+		i = ft_flagf_bonus(len, a, '0', i);
 	return (i);
 }

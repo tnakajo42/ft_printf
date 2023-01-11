@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:53:02 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 23:05:02 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 00:29:00 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ int		ft_p_md_bonus(const char f, va_list args, char *b, char *a);
 int		ft_z_md_bonus(const char f, va_list args, char *b, char *a);
 int		ft_sh_md_bonus(const char f, va_list args, char *b, char *a);
 int		ft_sp_md_bonus(const char f, va_list args, char *b, char *a);
+int		ft_md_sub_bonus(const char f, va_list args, int b_, int a_);
+int		ft_md_mi_sub_bonus(const char f, va_list args, int b_, int a_);
 
 #endif
