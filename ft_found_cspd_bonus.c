@@ -6,11 +6,13 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/10 16:00:35 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 20:06:33 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	ft_found_not_s_bonus(int i, char flag, int n);
 
 int	ft_found_c_bonus(int c, int i, char flag, int n)
 {
@@ -41,17 +43,13 @@ int	ft_found_s_bonus(char *s, int i, char flag, int n)
 	dot_i = 0;
 	if (i == 1)
 		i--;
-	if (!s && flag == '-')
-		i = ft_found_s("(null)", 0) + ft_flagf_bonus(6, n, ' ', 0);
-	else if (!s && flag == '.' && n >= 6)
-		i = ft_found_s("(null)", 0);
-	else if (!s && flag != '.')
-		i = ft_flagf_bonus(6, n, ' ', 0) + ft_found_s("(null)", 0);
+	if (!s)
+		i = ft_found_not_s_bonus(i, flag, n);
 	else if (s)
 	{
 		len = ft_strlen_bonus(s);
 		if (flag == '-' && n != 0)
-			i = ft_found_s(s, i) + ft_flagf_bonus(len, n , ' ', i);
+			i = ft_found_s(s, i) + ft_flagf_bonus(len, n, ' ', i);
 		else if (flag == '.')
 			while (s[dot_i] && dot_i < n)
 				i = ft_found_c(s[dot_i++], i);
@@ -60,6 +58,17 @@ int	ft_found_s_bonus(char *s, int i, char flag, int n)
 		else if (n != 0)
 			i = ft_found_s(s, i);
 	}
+	return (i);
+}
+
+static int	ft_found_not_s_bonus(int i, char flag, int n)
+{
+	if (flag == '-')
+		i = ft_found_s("(null)", 0) + ft_flagf_bonus(6, n, ' ', 0);
+	else if (flag == '.' && n >= 6)
+		i = ft_found_s("(null)", 0);
+	else if (flag != '.')
+		i = ft_flagf_bonus(6, n, ' ', 0) + ft_found_s("(null)", 0);
 	return (i);
 }
 
@@ -88,20 +97,6 @@ int	ft_found_p_bonus(size_t p, int i, char flag, int n)
 			i = ft_flagf_bonus(len, n, ' ', i) + ft_found_p(p, i);
 	}
 	return (i);
-}
-
-int	ft_p_len_bonus(size_t hex, int len)
-{
-	if (hex == 0)
-		len++;
-	else if (hex >= 16)
-	{
-		len = ft_p_len_bonus(hex / 16, len);
-		len = ft_p_len_bonus(hex % 16, len);
-	}
-	else
-		len++;
-	return (len);
 }
 
 int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)

@@ -6,34 +6,32 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/10 17:10:38 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:05:51 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// static int	ft_others_bonus(const char *f, va_list args, int i);
-
-int	ft_found_minus_ad_bonus(const char format, va_list args, char *a, int i)
+int	ft_found_minus_ad_bonus(const char f, va_list args, char *a, int i)
 {
 	int	n;
 
 	n = ft_atoi_bonus((char *)a);
-	if (format == 'c')
+	if (f == 'c')
 		i = ft_found_c_bonus(va_arg(args, int), i, '-', n);
-	else if (format == 's')
+	else if (f == 's')
 		i = ft_found_s_ad_bonus(va_arg(args, char *), i, '-', n);
-	else if (format == 'p')
-		i = ft_found_p_bonus(va_arg(args, unsigned long long), i, '-', n);
-	else if (format == 'd' || format == 'i')
+	else if (f == 'p')
+		i = ft_found_p_bonus(va_arg(args, size_t), i, '-', n);
+	else if (f == 'd' || f == 'i')
 		i = ft_found_i_plus_d_ad_bonus(va_arg(args, int), i, '-', n);
-	else if (format == 'u')
-		i = ft_found_u_ad_bonus(va_arg(args, unsigned long long), i, '-', n);
-	else if (format == 'x')
+	else if (f == 'u')
+		i = ft_found_u_ad_bonus(va_arg(args, unsigned int), i, '-', n);
+	else if (f == 'x')
 		i = ft_found_x_ad_bonus(va_arg(args, size_t), i, '-', n);
-	else if (format == 'X')
+	else if (f == 'X')
 		i = ft_found_bigx_ad_bonus(va_arg(args, size_t), i, '-', n);
-	else if (format == '%')
+	else if (f == '%')
 		i = ft_found_c_bonus('%', i, '-', 0);
 	else
 		i++;
@@ -71,11 +69,11 @@ int	ft_found_zero_ad_bonus(const char format, va_list args, char *a, int i)
 	else if (format == 's')
 		i = ft_found_s_ad_bonus(va_arg(args, char *), i, '0', n);
 	else if (format == 'p')
-		i = ft_found_p_bonus(va_arg(args, unsigned long long), i, '0', n);
+		i = ft_found_p_bonus(va_arg(args, size_t), i, '0', n);
 	else if (format == 'd' || format == 'i')
 		i = ft_found_i_plus_d_ad_bonus(va_arg(args, int), i, 'Z', n);
 	else if (format == 'u')
-		i = ft_found_u_ad_bonus(va_arg(args, unsigned long long), i, '0', n);
+		i = ft_found_u_ad_bonus(va_arg(args, unsigned int), i, '0', n);
 	else if (format == 'x')
 		i = ft_found_x_ad_bonus(va_arg(args, size_t), i, '0', n);
 	else if (format == 'X')

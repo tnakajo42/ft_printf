@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 23:30:08 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:11:58 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,22 @@ int	ft_found_x_bonus(size_t x, int i, char flag, int n)
 {
 	int	len;
 
-	len = 0;
-	len = ft_x_len_bonus(x, len);
-	if (flag == '.' &&n == 0 && x == 0)
+	len = ft_x_len_bonus(x, 0);
+	if (flag == '.' && n == 0 && x == 0)
 		return (i);
 	if (flag == '-')
 		i = ft_found_x(x, i) + ft_flagf_bonus(len, n, ' ', i);
 	else if (flag == '0' || flag == '.')
 		i = ft_flagf_bonus(len, n, '0', i) + ft_found_x(x, i);
+	else if (flag == 'Z')
+	{
+		if (x != 0)
+			i = ft_found_s("0x", i);
+		i = ft_flagf_bonus(len + 2, n, '0', 0) + ft_found_x(x, i);
+	}
 	else if (flag == '#')
 	{
-		while (len + 2 < n--)
-			i = ft_found_c(' ', i);
+		i = ft_flagf_bonus(len + 2, n, ' ', i);
 		if (x != 0)
 			i = ft_found_s("0x", i);
 		i = ft_found_x(x, i);
@@ -65,18 +69,22 @@ int	ft_found_bigx_bonus(size_t bigx, int i, char flag, int n)
 {
 	int	len;
 
-	len = 0;
-	len = ft_x_len_bonus(bigx, len);
-	if (flag == '.' &&n == 0 && bigx == 0)
+	len = ft_x_len_bonus(bigx, 0);
+	if (flag == '.' && n == 0 && bigx == 0)
 		return (i);
 	if (flag == '-')
 		i = ft_found_bigx(bigx, i) + ft_flagf_bonus(len, n, ' ', i);
 	else if (flag == '0' || flag == '.')
 		i = ft_flagf_bonus(len, n, '0', i) + ft_found_bigx(bigx, i);
+	else if (flag == 'Z')
+	{
+		if (bigx != 0)
+			i = ft_found_s("0X", i);
+		i = ft_flagf_bonus(len + 2, n, '0', 0) + ft_found_bigx(bigx, i);
+	}
 	else if (flag == '#')
 	{
-		while (len + 2 < n--)
-			i = ft_found_c(' ', i);
+		i = ft_flagf_bonus(len + 2, n, ' ', i);
 		if (bigx != 0)
 			i = ft_found_s("0X", i);
 		i = ft_found_bigx(bigx, i);

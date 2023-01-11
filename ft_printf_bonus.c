@@ -6,12 +6,11 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:55:14 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/10 17:28:24 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 22:19:08 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static int	ft_isdigit_bonus(const char *f, int j, int bonus_len);
 static int	ft_printd_bonus(const char *f, va_list args, int j, int i);
@@ -111,7 +110,7 @@ static int	ft_others_bonus(const char *f, va_list args, int i)
 	else if (*f == 's')
 		i = ft_found_s(va_arg(args, char *), i);
 	else if (*f == 'p')
-		i = ft_found_p(va_arg(args, unsigned long long), i);
+		i = ft_found_p(va_arg(args, size_t), i);
 	else if (*f == 'd' || *f == 'i')
 		i = ft_found_i_plus_d(va_arg(args, int), i);
 	else if (*f == 'u')

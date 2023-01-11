@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:21:16 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/08 20:34:55 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 23:03:49 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_found_u_ad_bonus(unsigned int u, int i, char flag, int n)
 	}
 	return (ft_found_u_bonus(u, i, flag, n));
 }
-
 
 int	ft_found_x_ad_bonus(size_t x, int i, char flag, int n)
 {

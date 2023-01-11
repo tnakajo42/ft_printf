@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnakajo <tnakajo@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:45:09 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/03 19:59:13 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 22:18:56 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	ft_next_percent(const char *format, va_list args, int i)
 	else if (*format == 's')
 		i = ft_found_s(va_arg(args, char *), i);
 	else if (*format == 'p')
-		i = ft_found_p(va_arg(args, unsigned long long), i);
+		i = ft_found_p(va_arg(args, size_t), i);
 	else if (*format == 'd' || *format == 'i')
 		i = ft_found_i_plus_d(va_arg(args, int), i);
 	else if (*format == 'u')
@@ -77,51 +77,3 @@ static int	ft_next_percent(const char *format, va_list args, int i)
 		i = -1;
 	return (i);
 }
-
-/* int	main(void)
-{
-	int		i = 0;
-
-	i = ft_printf(" % d \n", -1);
-	printf("%d\n", i);
-	i = printf(" % d \n", -1);
-	printf("%d\n", i);
-	i = ft_printf(" % d \n", 100);
-	printf("%d\n", i);
-	i = printf(" % d \n", 100);
-	printf("%d\n", i);
-	return (0);
-} */
-
-/* int	main(void)
-{
-	int		i = 0;
-	char	*a = "Happy new year!";
-
-	ft_printf("csp------\n");
-	i = ft_printf("%c, %s, %s, %p, %p\n", 'X', "abc", NULL, NULL, a);
-	printf("%d\n", i);
-	i = printf("%+c, %10s, %+s, %+p, %+p\n", 'X', "abc", NULL, NULL, a);
-	printf("%d\n", i);
-	ft_printf("diuxX------\n");
-	i = ft_printf("%d, %i, %u, %d\n", 42, 0, 12345, -2147483648);
-	printf("%d\n", i);
-	i = printf("%      d, %+i, %+u, %+d\n", 42, 0, 12345, -2147483648);
-	printf("%d\n", i);
-	ft_printf("xX%%------\n%42");
-	i = ft_printf("%xaaa%Xs%%\n%", 'X', 'Z');
-	printf("%d\n", i);
-	i = printf("%xaaa%Xs%%\n%", 'X', 'Z');
-	printf("%d\n", i);
-	
-	ft_printf("xX%%------\n%42");
-	i = ft_printf("%#x\n", 10);
-	printf("%d\n", i);
-	i = printf("%#x\n", 10);
-	printf("%d\n", i);
-	printf("\n");
-    ft_printf("ft_printf**%wx**\n", 9223372036854775807LL);
-    printf("printf*****%wx**\n", 9223372036854775807LL);
-	printf("\n");
-	return (0);
-} */

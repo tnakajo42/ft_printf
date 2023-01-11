@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_found_iux_md_bonus.c                            :+:      :+:    :+:   */
+/*   ft_found_iux_md_mi_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:21:16 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 21:15:51 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/11 21:17:54 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_found_u_md_bonus(unsigned int u, int b, int a)
+int	ft_found_u_md_mi_bonus(unsigned int u, int b, int a)
 {
 	int		i;
 	int		j;
@@ -26,23 +26,19 @@ int	ft_found_u_md_bonus(unsigned int u, int b, int a)
 	len = ft_strlen_bonus(u_);
 	a_ = a;
 	if (len < a)
-		i = ft_flagf_bonus(a, b, ' ', i);
-	else
-		i = ft_flagf_bonus(len, b, ' ', i);
-	i = ft_flagf_bonus(len, a, '0', i);
-	if (b <= len && a >= len && a != 0)
-		while (a < len--)
-			if (len < b)
-				i = ft_found_c(' ', i);
-	if (a_ == 0 && u == 0)
+		while (len < a--)
+			i = ft_found_c('0', i);
+	if (u == 0 && a_ == 0)
 		i = ft_found_c(' ', i);
 	else
 		i = ft_found_s(u_, i);
+	while (b - i > 0)
+		i = ft_found_c(' ', i);
 	free (u_);
 	return (i);
 }
 
-int	ft_found_x_md_bonus(size_t x, int b, int a, char flag)
+int	ft_found_x_md_mi_bonus(size_t x, int b, int a, char flag)
 {
 	int		i;
 	int		len;
@@ -51,24 +47,21 @@ int	ft_found_x_md_bonus(size_t x, int b, int a, char flag)
 	i = 0;
 	len = ft_x_len_bonus(x, 0);
 	a_ = a;
-	if (len < a)
-		i = ft_flagf_bonus(a, b, ' ', i);
-	else
-		i = ft_flagf_bonus(len, b, ' ', i);
 	if (flag == '#' && x != 0)
 		i = ft_found_s("0x", i);
-	i = ft_flagf_bonus(len, a, '0', i);
-	if (b <= len && a >= len && a != 0)
-		while (a < len--)
-			if (len < b)
-				i = ft_found_c(' ', i);
-	if (a_ == 0 && x == 0)
-		return (ft_found_c(' ', i));
-	i = ft_found_x(x, i);
+	if (len < a)
+		while (len < a--)
+			i = ft_found_c('0', i);
+	if (x == 0 && a_ == 0)
+		i = ft_found_c(' ', i);
+	else
+		i = ft_found_x(x, i);
+	while (b - i > 0)
+		i = ft_found_c(' ', i);
 	return (i);
 }
 
-int	ft_found_bigx_md_bonus(size_t bigx, int b, int a, char flag)
+int	ft_found_bigx_md_mi_bonus(size_t bigx, int b, int a, char flag)
 {
 	int		i;
 	int		len;
@@ -77,19 +70,16 @@ int	ft_found_bigx_md_bonus(size_t bigx, int b, int a, char flag)
 	i = 0;
 	len = ft_x_len_bonus(bigx, 0);
 	a_ = a;
-	if (len < a)
-		i = ft_flagf_bonus(a, b, ' ', i);
-	else
-		i = ft_flagf_bonus(len, b, ' ', i);
 	if (flag == '#' && bigx != 0)
 		i = ft_found_s("0X", i);
-	i = ft_flagf_bonus(len, a, '0', i);
-	if (b <= len && a >= len && a != 0)
-		while (a < len--)
-			if (len < b)
-				i = ft_found_c(' ', i);
-	if (a_ == 0 && bigx == 0)
-		return (ft_found_c(' ', i));
-	i = ft_found_bigx(bigx, i);
+	if (len < a)
+		while (len < a--)
+			i = ft_found_c('0', i);
+	if (bigx == 0 && a_ == 0)
+		i = ft_found_c(' ', i);
+	else
+		i = ft_found_bigx(bigx, i);
+	while (b - i > 0)
+		i = ft_found_c(' ', i);
 	return (i);
 }
