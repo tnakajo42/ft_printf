@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 19:48:49 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 20:06:33 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:21:33 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ int	ft_found_p_bonus(size_t p, int i, char flag, int n)
 	return (i);
 }
 
-int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
+int	ft_found_i_plus_d_bonus(int d, int i, char f, int n)
 {
 	char	*d_;
 	int		len;
 
-	if ((!d || d == 0) && n == 0 && flag == '.')
+	if ((!d || d == 0) && n == 0 && f == '.')
 		return (i);
 	d_ = ft_itoa_bonus(d);
 	len = ft_strlen_bonus(d_);
@@ -112,16 +112,15 @@ int	ft_found_i_plus_d_bonus(int d, int i, char flag, int n)
 		write(1, " ", 1);
 	else if (i == 1)
 		i--;
-	if (flag == '0' || flag == '.' || flag == 'Z')
-	{
-		if (d < 0 || d == -2147483648)
-			i = ft_print_minusd_bonus(d_, n, flag, i);
-		else
-			i += ft_flagf_bonus(len, n, '0', 0) + ft_found_i_plus_d(d, 0);
-	}
-	else if (flag == '-')
+	if ((d < 0 || d == -2147483648) && (f == '0' || f == '.' || f == 'Z'))
+		i = ft_print_minusd_bonus(d_, n, f, i);
+	else if (f == 'Z' && (f == '0' || f == '.' || f == 'Z'))
+		i += ft_flagf_bonus(len, n, ' ', 0) + ft_found_i_plus_d(d, 0);
+	else if (f == '0' || f == '.' || f == 'Z')
+		i += ft_flagf_bonus(len, n, '0', 0) + ft_found_i_plus_d(d, 0);
+	else if (f == '-')
 		i += ft_found_i_plus_d(d, 0) + ft_flagf_bonus(len, n, ' ', 0);
-	else if (flag == ' ')
+	else if (f == ' ')
 		i += ft_flagf_bonus(len, n, ' ', 0) + ft_found_i_plus_d(d, 0);
 	free(d_);
 	return (i);

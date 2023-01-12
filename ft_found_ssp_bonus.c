@@ -6,12 +6,11 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:26:55 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/11 19:34:48 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:25:54 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_found_sharp_bonus(const char format, va_list args, char *a, int i)
 {

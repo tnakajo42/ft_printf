@@ -6,7 +6,7 @@
 /*   By: tnakajo <tnakajo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:53:02 by tnakajo           #+#    #+#             */
-/*   Updated: 2023/01/12 00:29:00 by tnakajo          ###   ########.fr       */
+/*   Updated: 2023/01/12 17:26:13 by tnakajo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <limits.h>
 
 int		ft_printf(const char *format, ...);
@@ -60,7 +59,7 @@ int		ft_found_s_md_mi_bonus(char *s, int b, int a);
 int		ft_found_p_bonus(size_t p, int i, char flag, int n);
 int		ft_found_p_md_bonus(size_t p, int b, int a, char flag);
 int		ft_found_p_md_mi_bonus(size_t p, int b, int a, char flag);
-int		ft_found_i_plus_d_bonus(int d, int i, char flag, int n);
+int		ft_found_i_plus_d_bonus(int d, int i, char f, int n);
 int		ft_found_i_plus_d_ad_bonus(int d, int i, char flag, int n);
 int		ft_found_i_plus_d_od_bonus(int d, int i);
 int		ft_found_i_plus_d_md_bonus(int d, int b, int a);
